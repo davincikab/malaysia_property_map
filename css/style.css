@@ -1,0 +1,217 @@
+* {
+    font-family: 'Poppins', serif;
+    /* font-family: 'Montserrat', sans-serif; */
+}
+
+body { 
+    margin: 0; padding: 0; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.spinner-container {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 4;
+    background-color: #000000cd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    color:#fff;
+}
+
+.spinner-container .spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border:3px solid #fff;
+    border-color: #fff transparent #fff;
+    animation: spin 1s infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#map { 
+    height: 100vh; 
+    width: 100%; 
+}
+
+.mapboxgl-popup {
+    max-width: 400px;
+}
+
+.map-container {
+    position: relative;
+}
+
+.styles-toggler {
+    position: absolute;
+    top:10px;
+    left: 10px;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0px 0px 0.25rem #555;
+    padding:10px;
+    border-radius: 5px;
+}
+
+.styles-toggler > div {
+    margin-bottom:3px;
+}
+
+.legend-container {
+    position: absolute;
+    /* top:150px; */
+    top: 0px;
+    left: 0px;
+    margin:10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 0.25rem #555;
+    border-radius: 5px;
+    /* color:#d1d1d1; */
+    z-index: 2;
+    padding: 12px 15px;
+}
+
+.legend-container .header {
+    margin-bottom: 5px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.legend-item .color-div {
+    width: 8px;
+    height: 8px;
+    background-color: aqua;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.mapboxgl-popup {
+    max-width: 280px !important;
+    width: 260px;
+}
+
+.popup-content {
+    min-width: 250px;
+    width: 100%;
+    font-family: 'Franklin Gothic Regular', 'Arial Narrow', Arial, sans-serif;
+}
+
+.popup-content .popup-header {
+    font-size: 16px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #ddd;
+}
+.popup-body p {
+    font-size: 14px;
+    margin: 0 0 0.2em;
+}
+
+.buttons {
+    position: absolute;
+    top:200px;
+    left: 10px;
+    z-index: 2;
+    background-color: white;
+    box-shadow: 0px 0px 0.25rem #555;
+    border-radius: 5px;
+    padding:10px;
+    /* font-weight: 400; */
+    font-size: 15px;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+.buttons .header {
+    border-bottom: 1px solid #ddd;
+    padding:3px;
+    margin-bottom: 5px;
+}
+
+.mapboxgl-popup-close-button {
+    font-size: 18px;
+}
+
+.filter-tab {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    z-index: 3;
+
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+
+    box-shadow: 0px 0px 0.5rem #4a4a4a;
+}
+
+.filter-tab .tab {
+    padding:1rem;
+}
+
+.tab-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.filter-tab .tab-item {
+    margin:10px 0px;
+}
+
+.tab-item .label {
+    margin:3px 0px;
+}
+
+
+#price-select {
+    display: flex;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin:5px;
+    overflow: hidden;
+}
+
+#price-select input {
+    border:none;
+    box-shadow: none;
+    width: 70%;
+    height: 30px;
+}
+
+
+.input-group .group-text {
+    background-color: #ddd;
+    width: 30%;
+    padding:0 5px;
+}
+
+.d-none {
+    display: none !important;
+}

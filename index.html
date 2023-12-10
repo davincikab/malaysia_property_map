@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a popup on hover</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+
+<script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Montserrat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/virtual-select.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="map-container">
+    <div class="spinner-container">
+        <div class="spinner"></div>
+        <p>Loading Data ...</p>
+    </div>
+
+    <div class="styles-toggler d-none">
+        <div class="header" id="legend-title">Basemap</div>
+    
+        <div class="style-div">
+            <input type="radio" class="styles" name="style" id="streets-v12" checked>
+            <label for="streets-v12">Street</label>
+        </div>
+        
+        <div class="style-div">
+            <input type="radio" class="styles" name="style" id="satellite-streets-v12">
+            <label for="satellite-streets-v12">Satellite</label>
+        </div>
+
+        <div class="style-div">
+            <input type="radio" class="styles" name="style" id="dark-v11">
+            <label for="dark-v11">Dark</label>
+        </div>
+
+    </div>
+
+    <div class="legend-container d-none">
+        <div class="header" id="legend-title">Average Asking PSF (RM)</div>
+        <div class="legend-body">
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #000;"></div>
+                <div class="text-div">> 2000</div>
+            </div>
+
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #d9360f;"></div>
+                <div class="text-div">> 1500 - 2000</div>
+            </div>
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #ee641b;"></div>
+                <div class="text-div"> > 1000 - 1500</div>
+            </div>
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #f78f2c;"></div>
+                <div class="text-div">> 800 - 1000</div>
+            </div>
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #fada30;"></div>
+                <div class="text-div">> 600 - 800</div>
+            </div>
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #c8dc3f;"></div>
+                <div class="text-div">> 400 - 600</div>
+            </div>
+
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #8ac744;"></div>
+                <div class="text-div">< 400</div>
+            </div>
+
+            <div class="legend-item">
+                <div class="color-div" style="background-color: #949090;"></div>
+                <div class="text-div">No Data</div>
+            </div>
+            <!-- 1000,'#ee641b',
+            1500,'#d9360f',
+            2000,'#000'
+
+            0,'#8ac744',
+            400,'#c8dc3f',
+            600,'#fada30',
+            800,'#f78f2c', -->
+           
+        </div>
+    </div>
+
+    <div class="filter-tab d-none">
+        <section class="tab">
+            <div class="tab-header">FILTER BY: </div>
+            <div class="tab-body" id="filter-tab">
+                <div class="tab-item">
+                    <div class="label">New Project/Subsale</div>
+                    <div id="category-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Bedrooms</div>
+                    <div id="bedrooms-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Price Range</div>
+                    <div id="price-select" class="d-flex">
+                        <div class="input-group">
+                            <div class="group-text">Min</div>
+                            <input type="number" id="min-price">
+                        </div>
+
+                        <div class="input-group">
+                            <div class="group-text">Max</div>
+                            <input type="number" id="max-price">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Tenure</div>
+                    <div id="tenure-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Title Type</div>
+                    <div id="title-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Property Type</div>
+                    <div id="property-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Train</div>
+                    <div id="train-select"></div>
+
+                    <!-- <div id="interchange-select">
+                        <div class="input-group"></div>
+                    </div> -->
+                </div>
+
+            </div>
+        </section>
+
+        <section class="tab">
+            <div class="tab-header">TOGGLE LAYERS BY: </div>
+            <div class="tab-body" id="layers-tab">
+                <div class="tab-item">
+                    <div class="label">Job Creation & Amenities</div>
+                    <div id="amenities-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">High Rental Demand Tools</div>
+                    <div id="rental-select"></div>
+                </div>
+
+                <div class="tab-item">
+                    <div class="label">Commercial Demand Tools </div>
+                    <div id="commercial-select"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="map"></div>
+</div>
+
+<script src="js/train_lines.js"></script>
+<script src="js/turf.min.js"></script>
+<script src="js/xlsx.full.min.js"></script>
+<script src="js/virtual-select.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
